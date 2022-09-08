@@ -269,208 +269,86 @@
       <property name="checked">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>10</y>
-         <width>201</width>
-         <height>351</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="EditorLayout">
-        <item>
-         <widget class="QLabel" name="FlatType">
-          <property name="text">
-           <string>지형 타입</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="FlatTypeBox">
-          <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QVBoxLayout" name="SelectorLayout">
+         <item>
+          <widget class="QCheckBox" name="AllowFlight">
            <property name="text">
-            <string>DEFAULT</string>
+            <string>플라이</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="SpawnNPC">
            <property name="text">
-            <string>flat</string>
+            <string>NPC 스폰</string>
            </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="Difficulty">
-          <property name="text">
-           <string>난이도</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="DifficultyBox">
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="AllowNether">
            <property name="text">
-            <string>평화로움</string>
+            <string>지옥</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="OnlineMode">
            <property name="text">
-            <string>쉬움</string>
+            <string>정품 모드</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="SpawnMonster">
            <property name="text">
-            <string>보통</string>
+            <string>몬스터 스폰</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="SelectorLayout2">
+         <item>
+          <widget class="QCheckBox" name="SpawnAnimal">
            <property name="text">
-            <string>어려움</string>
+            <string>동물 스폰</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="WhiteList">
+           <property name="text">
+            <string>화이트리스트</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="CommandBlock">
+           <property name="text">
+            <string>커맨드 블럭</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="PVP">
+           <property name="text">
+            <string>PVP</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="HardCore">
            <property name="text">
             <string>하드코어</string>
            </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="MaxPlayer">
-          <property name="text">
-           <string>최대 유저</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="MaxPlayerLine">
-          <property name="baseSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>20</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="ResourcePack">
-          <property name="text">
-           <string>리소스팩</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="ResourcePackLine">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>1</y>
-         <width>141</width>
-         <height>371</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="SelectorLayout">
-        <item>
-         <widget class="QCheckBox" name="AllowFlight">
-          <property name="text">
-           <string>플라이</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="SpawnNPC">
-          <property name="text">
-           <string>NPC 스폰</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="AllowNether">
-          <property name="text">
-           <string>지옥</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="OnlineMode">
-          <property name="text">
-           <string>정품 모드</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="SpawnMonster">
-          <property name="text">
-           <string>몬스터 스폰</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>1</y>
-         <width>141</width>
-         <height>371</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="SelectorLayout2">
-        <item>
-         <widget class="QCheckBox" name="SpawnAnimal">
-          <property name="text">
-           <string>동물 스폰</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="WhiteList">
-          <property name="text">
-           <string>화이트리스트</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="CommandBlock">
-          <property name="text">
-           <string>커맨드 블럭</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="PVP">
-          <property name="text">
-           <string>PVP</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

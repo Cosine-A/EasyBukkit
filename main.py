@@ -24,33 +24,77 @@ class EasyBukkitMain(QMainWindow, form_class):
 
         self.versions.currentTextChanged.connect(self.select_version)
 
-        self.AllowFlight.stateChanged.connect(self.change_state)
-
         self.Start.clicked.connect(self.start_bukkit)
         # self.End.clicked.connect(self.end_bukkit)
 
-        # 프로퍼티 설정
+        self.AllowFlight.stateChanged.connect(self.change_state)
+        self.SpawnNPC.stateChanged.connect(self.change_state)
+        self.AllowNether.stateChanged.connect(self.change_state)
+        self.OnlineMode.stateChanged.connect(self.change_state)
+        self.SpawnMonster.stateChanged.connect(self.change_state)
+        self.SpawnAnimal.stateChanged.connect(self.change_state)
+        self.WhiteList.stateChanged.connect(self.change_state)
+        self.CommandBlock.stateChanged.connect(self.change_state)
+        self.PVP.stateChanged.connect(self.change_state)
+
         self.TabBox.tabBarClicked.connect(self.setting_tab)
 
     def change_state(self):
-        try:
-            path = self.PathLine.text()
-            read_server = open(f"{path}\\server.properties", "r")
-            lines = read_server.readlines()
-            read_server.close()
+        path = self.PathLine.text()
+        read_server = open(f"{path}\\server.properties", "r")
+        lines = read_server.readlines()
+        read_server.close()
 
-            with open(f"{path}\\server.properties", "w") as write_server:
-                for line in lines:
-                    if line.startswith("allow-flight"):
-                        check = str(self.bool_to_str(self.AllowFlight.isChecked()))
-                        line = line.replace("true", check).replace("false", check)
-                        write_server.write(line)
-                        print(line)
-                    else:
-                        write_server.write(line)
+        with open(f"{path}\\server.properties", "w") as write_server:
+            for line in lines:
+                if line.startswith("allow-flight"):
+                    check = str(self.bool_to_str(self.AllowFlight.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("spawn-npcs"):
+                    check = str(self.bool_to_str(self.SpawnNPC.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("allow-nether"):
+                    check = str(self.bool_to_str(self.AllowNether.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("online-mode"):
+                    check = str(self.bool_to_str(self.OnlineMode.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("spawn-monsters"):
+                    check = str(self.bool_to_str(self.SpawnMonster.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("spawn-animals"):
+                    check = str(self.bool_to_str(self.SpawnAnimal.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("white-list"):
+                    check = str(self.bool_to_str(self.WhiteList.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("enable-command-block"):
+                    check = str(self.bool_to_str(self.CommandBlock.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("pvp"):
+                    check = str(self.bool_to_str(self.PVP.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                elif line.startswith("hardcore"):
+                    check = str(self.bool_to_str(self.HardCore.isChecked()))
+                    line = line.replace("true", check).replace("false", check)
+                    write_server.write(line)
+                else:
+                    write_server.write(line)
 
-        except BaseException as e:
-            print(e)
+    def change_setting(self, target, target2, line, write_server):
+        if line.startswith(target):
+            check = str(self.bool_to_str(target2.isChecked()))
+            line = line.replace("true", check).replace("false", check)
+            write_server.write(line)
 
     def bool_to_str(self, state):
         if state:
@@ -58,13 +102,53 @@ class EasyBukkitMain(QMainWindow, form_class):
         else:
             return "false"
 
-    def setting_tab(self):
-        path = self.PathLine.text()
-        self.serverBox.setChecked(True)
-        if os.path.exists(f"{path}\\server.properties"):
-            self.serverBox.setEnabled(True)
-        else:
+    def change_eula_state(self, path):
+        if not os.path.exists(f"{path}\\eula.txt"):
+            self.CheckEula.setChecked(False)
+            return
+        with open(f"{path}\\eula.txt", "r") as read_server:
+            for line in read_server.readlines():
+                if line.startswith("eula"):
+                    if "true" in line:
+                        self.CheckEula.setChecked(True)
+                    else:
+                        self.CheckEula.setChecked(False)
+
+    def setting_tab(self, tab):
+        try:
+            path = self.PathLine.text()
             self.serverBox.setEnabled(False)
+            if path == "":
+                return
+            if tab == 0:
+                self.change_eula_state(path)
+            if tab == 1:
+                path = self.PathLine.text()
+                self.serverBox.setChecked(True)
+
+                if os.path.exists(f"{path}\\server.properties"):
+                    self.serverBox.setEnabled(True)
+                    with open(f"{path}\\server.properties", "r") as read_server:
+                        for line in read_server.readlines():
+                            self.check_setting_checked(line, "allow-flight", self.AllowFlight)
+                            self.check_setting_checked(line, "spawn-npcs", self.SpawnNPC)
+                            self.check_setting_checked(line, "allow-nether", self.AllowNether)
+                            self.check_setting_checked(line, "online-mode", self.OnlineMode)
+                            self.check_setting_checked(line, "spawn-monsters", self.SpawnMonster)
+                            self.check_setting_checked(line, "spawn-animals", self.SpawnAnimal)
+                            self.check_setting_checked(line, "white-lite", self.WhiteList)
+                            self.check_setting_checked(line, "enable-command-block", self.CommandBlock)
+                            self.check_setting_checked(line, "pvp", self.PVP)
+                            self.check_setting_checked(line, "hardcore", self.HardCore)
+        except BaseException as e:
+            print(e)
+
+    def check_setting_checked(self, line, target, target2):
+        if line.startswith(target):
+            if "true" in line:
+                target2.setChecked(True)
+            else:
+                target2.setChecked(False)
 
     def only_integer(self, select):
         select.setValidator(QIntValidator(self))
@@ -94,7 +178,6 @@ class EasyBukkitMain(QMainWindow, form_class):
             os.chdir(path)
             os.startfile(f"{path}")
             os.startfile(f"{path}\\Run.bat")
-
         except FileNotFoundError as e:
             print(e)
 
@@ -118,12 +201,10 @@ class EasyBukkitMain(QMainWindow, form_class):
         min_ram = self.MinLine.text()
         max_byte = self.get_ram(self.MaxByte)
         min_byte = self.get_ram(self.MinByte)
-        nogui = self.get_nogui()
-        eula = self.get_eula()
 
         self.create_folder(path)
-        self.create_starter(path, max_ram, max_byte, min_ram, min_byte, nogui)
-        self.create_eula(path, eula)
+        self.create_starter(path, max_ram, max_byte, min_ram, min_byte)
+        self.create_eula(path)
 
     def create_folder(self, path):
         try:
@@ -131,13 +212,15 @@ class EasyBukkitMain(QMainWindow, form_class):
         except FileExistsError as e:
             print(e)
 
-    def create_starter(self, path, max_ram, max_byte, min_ram, min_byte, nogui):
+    def create_starter(self, path, max_ram, max_byte, min_ram, min_byte):
+        nogui = self.get_nogui()
         with open(f"{path}\\Run.bat", "w+") as start:
             start.write("@echo off")
             start.write(f"\njava -Xmx{max_ram}{max_byte} -Xms{min_ram}{min_byte} -jar paper.jar{nogui}")
             start.write("\npause")
 
-    def create_eula(self, path, eula):
+    def create_eula(self, path):
+        eula = self.get_eula()
         with open(f"{path}\\eula.txt", "w+", encoding="utf-8") as eula_file:
             eula_file.write(f"eula={eula}")
 
@@ -177,24 +260,31 @@ class EasyBukkitMain(QMainWindow, form_class):
             return
         if self.versions.currentText() == "1.19.2":
             self.PathLine.setText("C:\\EasyBukkit\\1.19.2")
+            self.change_eula_state("C:\\EasyBukkit\\1.19.2")
             return
         if self.versions.currentText() == "1.17.1":
             self.PathLine.setText("C:\\EasyBukkit\\1.17.1")
+            self.change_eula_state("C:\\EasyBukkit\\1.17.1")
             return
         if self.versions.currentText() == "1.16.5":
             self.PathLine.setText("C:\\EasyBukkit\\1.16.5")
+            self.change_eula_state("C:\\EasyBukkit\\1.16.5")
             return
         if self.versions.currentText() == "1.15.2":
             self.PathLine.setText("C:\\EasyBukkit\\1.15.2")
+            self.change_eula_state("C:\\EasyBukkit\\1.15.2")
             return
         if self.versions.currentText() == "1.14.4":
             self.PathLine.setText("C:\\EasyBukkit\\1.14.4")
+            self.change_eula_state("C:\\EasyBukkit\\1.14.4")
             return
         if self.versions.currentText() == "1.13.2":
             self.PathLine.setText("C:\\EasyBukkit\\1.13.2")
+            self.change_eula_state("C:\\EasyBukkit\\1.13.2")
             return
         if self.versions.currentText() == "1.12.2":
             self.PathLine.setText("C:\\EasyBukkit\\1.12.2")
+            self.change_eula_state("C:\\EasyBukkit\\1.12.2")
             return
 
 
