@@ -6,179 +6,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>528</height>
+    <width>500</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="versionBox">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>9</y>
-      <width>141</width>
-      <height>504</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>504</height>
-     </size>
-    </property>
-    <property name="title">
-     <string>버전</string>
-    </property>
-    <widget class="QRadioButton" name="version1152">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>232</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.15.2</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="version1132">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>356</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.13.2</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="version1122">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>418</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.12.2</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="version1171">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>108</y>
-       <width>80</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.17,1</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="version1144">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>294</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.14.4</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="version1192">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>46</y>
-       <width>80</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.19.2</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="version1165">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>170</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>1.16.5</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QGroupBox" name="settingBox">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>9</y>
-      <width>361</width>
-      <height>221</height>
+      <x>10</x>
+      <y>160</y>
+      <width>481</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="title">
      <string>실행기 설정</string>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="FilePath">
-       <property name="text">
-        <string>파일 경로</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="MiniRam">
-       <property name="text">
-        <string>최소 RAM</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
+     <item row="0" column="1" colspan="2">
+      <widget class="QLineEdit" name="PathLine"/>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="MiniLine">
+      <widget class="QLineEdit" name="MinLine">
        <property name="text">
         <string>1</string>
        </property>
        <property name="maxLength">
         <number>32767</number>
        </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QComboBox" name="MiniByte">
-       <item>
-        <property name="text">
-         <string>GB</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>MB</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item row="2" column="0">
@@ -201,6 +60,60 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="MinRam">
+       <property name="text">
+        <string>최소 RAM</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0" colspan="2">
+      <widget class="QCheckBox" name="NoGui">
+       <property name="text">
+        <string>GUI 없음</string>
+       </property>
+       <property name="shortcut">
+        <string extracomment="설명입니다"/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="FilePath">
+       <property name="text">
+        <string>파일 경로</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="2">
+      <widget class="QCheckBox" name="CheckEula">
+       <property name="text">
+        <string>EULA 동의</string>
+       </property>
+       <property name="shortcut">
+        <string extracomment="설명입니다"/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QComboBox" name="MinByte">
+       <item>
+        <property name="text">
+         <string>GB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MB</string>
+        </property>
+       </item>
+      </widget>
+     </item>
      <item row="2" column="2">
       <widget class="QComboBox" name="MaxByte">
        <item>
@@ -215,38 +128,15 @@
        </item>
       </widget>
      </item>
-     <item row="3" column="0" colspan="2">
-      <widget class="QCheckBox" name="NoGui">
-       <property name="text">
-        <string>GUI 없음</string>
-       </property>
-       <property name="shortcut">
-        <string extracomment="설명입니다"/>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0" colspan="2">
-      <widget class="QCheckBox" name="CheckEula">
-       <property name="text">
-        <string>EULA 동의</string>
-       </property>
-       <property name="shortcut">
-        <string extracomment="설명입니다"/>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1" colspan="2">
-      <widget class="QLineEdit" name="PathLine"/>
-     </item>
     </layout>
    </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>230</y>
-      <width>171</width>
-      <height>151</height>
+      <x>300</x>
+      <y>15</y>
+      <width>191</width>
+      <height>141</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -255,19 +145,91 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
       <widget class="QPushButton" name="Start">
        <property name="text">
         <string>실행</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="End_2">
+       <property name="text">
+        <string>설정</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QPushButton" name="End">
        <property name="text">
         <string>종료</string>
        </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="versionBox">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>291</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>버전</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QComboBox" name="versions">
+       <item>
+        <property name="text">
+         <string>버전을 선택해주세요</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.19.2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.17.1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.16.5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.15.2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.14.4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.13.2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.12.2</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
