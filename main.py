@@ -7,10 +7,10 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.QtGui import QIcon, QIntValidator
 from PyQt5.QtCore import QSize
 
-form_class = uic.loadUiType("./design.ui")[0]
+form_class = uic.loadUiType("main.ui")[0]
 
 
-class MainClass(QMainWindow, form_class):
+class EasyBukkitMain(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -24,8 +24,47 @@ class MainClass(QMainWindow, form_class):
 
         self.versions.currentTextChanged.connect(self.select_version)
 
+        self.AllowFlight.stateChanged.connect(self.change_state)
+
         self.Start.clicked.connect(self.start_bukkit)
         # self.End.clicked.connect(self.end_bukkit)
+
+        # 프로퍼티 설정
+        self.TabBox.tabBarClicked.connect(self.setting_tab)
+
+    def change_state(self):
+        try:
+            path = self.PathLine.text()
+            read_server = open(f"{path}\\server.properties", "r")
+            lines = read_server.readlines()
+            read_server.close()
+
+            with open(f"{path}\\server.properties", "w") as write_server:
+                for line in lines:
+                    if line.startswith("allow-flight"):
+                        check = str(self.bool_to_str(self.AllowFlight.isChecked()))
+                        line = line.replace("true", check).replace("false", check)
+                        write_server.write(line)
+                        print(line)
+                    else:
+                        write_server.write(line)
+
+        except BaseException as e:
+            print(e)
+
+    def bool_to_str(self, state):
+        if state:
+            return "true"
+        else:
+            return "false"
+
+    def setting_tab(self):
+        path = self.PathLine.text()
+        self.serverBox.setChecked(True)
+        if os.path.exists(f"{path}\\server.properties"):
+            self.serverBox.setEnabled(True)
+        else:
+            self.serverBox.setEnabled(False)
 
     def only_integer(self, select):
         select.setValidator(QIntValidator(self))
@@ -42,7 +81,10 @@ class MainClass(QMainWindow, form_class):
             QMessageBox.warning(self, "에러", "경로가 설정되어 있지 않습니다.")
             return
 
-        self.check_process_running("cmd")
+        if self.check_process_running("cmd"):
+            QMessageBox.warning(self, "에러", "이미 버킷을 실행 중입니다.\n(CMD 실행 시, 오류가 발생할 수 있습니다.)")
+            return
+
         self.create_bukkit()
         self.download_bukkit(self.get_target_bukkit(), f"{path}\\paper.jar")
         self.run_bukkit(path)
@@ -52,6 +94,7 @@ class MainClass(QMainWindow, form_class):
             os.chdir(path)
             os.startfile(f"{path}")
             os.startfile(f"{path}\\Run.bat")
+
         except FileNotFoundError as e:
             print(e)
 
@@ -59,10 +102,10 @@ class MainClass(QMainWindow, form_class):
         for proc in psutil.process_iter():
             try:
                 if process_name.lower() in proc.name().lower():
-                    QMessageBox.warning(self, "에러", "이미 버킷을 실행 중입니다.\n(CMD 실행 시, 오류가 발생할 수 있습니다.)")
-                    return
+                    return True
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 pass
+        return False
 
     def download_bukkit(self, url, file_name):
         with open(file_name, "wb") as file:  # open in binary mode
@@ -157,7 +200,7 @@ class MainClass(QMainWindow, form_class):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    myWindow = MainClass()
+    myWindow = EasyBukkitMain()
     myWindow.show()
     app.exec_()
 
