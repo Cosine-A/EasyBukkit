@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EasyBukkit</class>
+ <widget class="QMainWindow" name="EasyBukkit">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="TabBox">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-1</y>
+      <width>501</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="MainTab">
+     <attribute name="title">
+      <string>메인</string>
+     </attribute>
+     <widget class="QGroupBox" name="settingBox">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>140</y>
+        <width>481</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>실행기 설정</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="PathLine"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="MinLine">
+         <property name="text">
+          <string>1</string>
+         </property>
+         <property name="maxLength">
+          <number>32767</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="MaxRam">
+         <property name="text">
+          <string>최대 RAM</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="MaxLine">
+         <property name="text">
+          <string>1</string>
+         </property>
+         <property name="maxLength">
+          <number>32767</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="MinRam">
+         <property name="text">
+          <string>최소 RAM</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QCheckBox" name="NoGui">
+         <property name="text">
+          <string>GUI 없음</string>
+         </property>
+         <property name="shortcut">
+          <string extracomment="설명입니다"/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="FilePath">
+         <property name="text">
+          <string>파일 경로</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QCheckBox" name="CheckEula">
+         <property name="text">
+          <string>EULA 동의</string>
+         </property>
+         <property name="shortcut">
+          <string extracomment="설명입니다"/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="MinByte">
+         <item>
+          <property name="text">
+           <string>GB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MB</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QComboBox" name="MaxByte">
+         <item>
+          <property name="text">
+           <string>GB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MB</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="versionBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>9</y>
+        <width>291</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>버전</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QComboBox" name="versions">
+         <item>
+          <property name="text">
+           <string>버전을 선택해주세요</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.19.2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.17.1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.16.5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.15.2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.14.4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.13.2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.12.2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>12</y>
+        <width>191</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="Start">
+         <property name="text">
+          <string>실행</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="End">
+         <property name="text">
+          <string>종료</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="SettingTab">
+     <attribute name="title">
+      <string>설정</string>
+     </attribute>
+     <widget class="QGroupBox" name="serverBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>501</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string notr="true"/>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>10</y>
+         <width>201</width>
+         <height>351</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="EditorLayout">
+        <item>
+         <widget class="QLabel" name="FlatType">
+          <property name="text">
+           <string>지형 타입</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="FlatTypeBox">
+          <item>
+           <property name="text">
+            <string>DEFAULT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>flat</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="Difficulty">
+          <property name="text">
+           <string>난이도</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="DifficultyBox">
+          <item>
+           <property name="text">
+            <string>평화로움</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>쉬움</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>보통</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>어려움</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>하드코어</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="MaxPlayer">
+          <property name="text">
+           <string>최대 유저</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="MaxPlayerLine">
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>20</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="ResourcePack">
+          <property name="text">
+           <string>리소스팩</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="ResourcePackLine">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>1</y>
+         <width>141</width>
+         <height>371</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="SelectorLayout">
+        <item>
+         <widget class="QCheckBox" name="AllowFlight">
+          <property name="text">
+           <string>플라이</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="SpawnNPC">
+          <property name="text">
+           <string>NPC 스폰</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="AllowNether">
+          <property name="text">
+           <string>지옥</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="OnlineMode">
+          <property name="text">
+           <string>정품 모드</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="SpawnMonster">
+          <property name="text">
+           <string>몬스터 스폰</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>1</y>
+         <width>141</width>
+         <height>371</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="SelectorLayout2">
+        <item>
+         <widget class="QCheckBox" name="SpawnAnimal">
+          <property name="text">
+           <string>동물 스폰</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="WhiteList">
+          <property name="text">
+           <string>화이트리스트</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="CommandBlock">
+          <property name="text">
+           <string>커맨드 블럭</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="PVP">
+          <property name="text">
+           <string>PVP</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
